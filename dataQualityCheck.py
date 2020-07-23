@@ -17,15 +17,21 @@ customer_data = pd.concat([sheet3, sheet4, sheet1])
 #    sheets.append(datasets.parse(sheet))
 # customer_data = pd.concat(sheets)
 
+#TODO: Find the number of records 7 columns of the sheet
 print(sheet0.shape)
 print(sheet3.shape)
 print(sheet4.shape)
 print(sheet1.shape)
 print(customer_data.shape)
 
-print(sheet3.head())
+# print(sheet3.head())
 
-#TODO: Checking if there has an empty cell or not
-for rowNum in range(2, sheet3.max_row):
-    print(sheet3.cell(row=rowNum, column=2).value)
-        # if cell is None: print("Empty cell.")
+#TODO: Distinct records
+customerIds = sheet1.iloc[:,1].unique()
+distIds = sheet1.iloc[:,1].nunique()
+print(customerIds[0], distIds-1)        # First value of customerIds will be column name, 
+                                        # so minus it from distIds
+
+
+
+
