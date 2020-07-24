@@ -28,9 +28,9 @@ print(customer_data.shape)
 
 #TODO: Distinct records
 customerIds = sheet1.iloc[:,1].unique()
-distIds = sheet1.iloc[:,1].nunique()
-print(customerIds[0], distIds-1)        # First value of customerIds will be column name, 
-                                        # so minus it from distIds
+distIds = sheet1.iloc[:,1].nunique()    # First value of customerIds will be column name,
+print(customerIds[0], distIds-1)        # so minus it from distIds 
+                                        
 
 
 
