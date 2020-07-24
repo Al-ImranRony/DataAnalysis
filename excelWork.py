@@ -45,9 +45,19 @@ if emptyCnt > 0:
         print(emptyCnt, "Empty cells in column", 3)
 
 #TODO: Check All Rows and Update Incorrect values
-pvUpdates = {'2': 9, '4': 8, '5': 7}
-for rowNum in range(4, Sheet5.max_row):                  # skip some rows
-    cIds = Sheet5.cell(row=rowNum, column=1).value
-    if cIds in pvUpdates:
-        Sheet5.cell(row=rowNum, column=6).value = pvUpdates[cIds]
-wb.save("updated.xlsx")
+# pvUpdates = {'2': 9, '4': 8, '5': 7}
+# for rowNum in range(4, Sheet5.max_row):                  # skip some rows
+#     cIds = Sheet5.cell(row=rowNum, column=1).value
+#     if cIds in pvUpdates:
+#         Sheet5.cell(row=rowNum, column=6).value = pvUpdates[cIds]
+# wb.save("updated.xlsx")
+
+wb.create_sheet(index=0, title='tempSheet')
+print(wb.get_sheet_names())
+wb.remove_sheet(wb.get_sheet_by_name('tempSheet'))
+print(wb.get_sheet_names())
+
+for rowOfCellObjects in Sheet5['A2':'C4']:
+    for cellObj in rowOfCellObjects:
+        print(cellObj.coordinate, cellObj.value)
+    print('-------------')
