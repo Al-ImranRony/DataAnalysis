@@ -1,5 +1,5 @@
 import openpyxl
-import pandas
+import pandas as pd
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 

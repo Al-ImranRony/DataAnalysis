@@ -1,5 +1,6 @@
 import sys
 import pandas as pd
+from datetime import datetime
 
 
 excel_file = "KPMG_dataset_sprocket_central.xlsx"
@@ -30,7 +31,12 @@ print(customer_data.shape)
 customerIds = sheet1.iloc[:,1].unique()
 distIds = sheet1.iloc[:,1].nunique()    # First value of customerIds will be column name,
 print(customerIds[0], distIds-1)        # so minus it from distIds 
-                                        
+
+#TODO: Convert character-date to Date
+charDate = "July 25 2020 12:01 AM"
+dateObj = datetime.strptime(charDate, "%B %d %Y %H:%M %p")
+print(dateObj)
+
 
 
 
