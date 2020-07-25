@@ -1,15 +1,16 @@
 import sys
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 from datetime import datetime
 
 
-excel_file = "KPMG_dataset_sprocket_central.xlsx"
-datasets = pd.ExcelFile(excel_file)
+excel_file = "KPMG_datasets.xlsx"
 
-sheet0 = pd.read_excel(datasets, 'Title Sheet')
-sheet3 = pd.read_excel(excel_file, sheet_name=3, index_col=0)
-sheet4 = pd.read_excel(excel_file, sheet_name=4, index_col=0)
-sheet1 = pd.read_excel(excel_file, sheet_name=1, index_col=0)
+sheet0 = pd.read_excel(excel_file, 'Title Sheet', skiprows=1)
+sheet3 = pd.read_excel(excel_file, sheet_name='CustomerDemographic', skiprows=1)
+sheet4 = pd.read_excel(excel_file, sheet_name='CustomerAddress', skiprows=1)
+sheet1 = pd.read_excel(excel_file, sheet_name='Transactions', skiprows=1)
 
 customer_data = pd.concat([sheet3, sheet4, sheet1])
 # If excelFile has lot of sheets !
@@ -37,7 +38,12 @@ charDate = "July 25 2020 12:01 AM"
 dateObj = datetime.strptime(charDate, "%B %d %Y %H:%M %p")
 print(dateObj)
 
+#TODO: Data calculations
+pivot = sheet3.groupby(['customer_id']).mean()
+bestCustomers = pivot.loc[:,"past_3_years_bike_related_purchases":"tenure"]
 
+print(bestCustomers)
 
-
-
+#TODO: Plot the output calculations data
+bestCustomers.plot()
+plt.show()
