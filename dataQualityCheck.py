@@ -20,7 +20,6 @@ customer_data = pd.concat([sheet3, sheet4, sheet1])
 # customer_data = pd.concat(sheets)
 
 #TODO: Find the number of records 7 columns of the sheet
-print(sheet0.shape)
 print(sheet3.shape)
 print(sheet4.shape)
 print(sheet1.shape)
@@ -38,31 +37,29 @@ charDate = "July 25 2020 12:01 AM"
 dateObj = datetime.strptime(charDate, "%B %d %Y %H:%M %p")
 print(dateObj)
 
-#TODO: Data calculations
-pivot = sheet3.groupby(['customer_id']).mean()
-bestCustomers = pivot.loc[:,"past_3_years_bike_related_purchases":"tenure"]
+#TODO: Data exploration
+srtV = sheet3.sort_values(['tenure', 'DOB'], ascending=False).head(1000)
+print(srtV)
 
-print(bestCustomers)
-
-#TODO: Plot the output calculations data
-bestCustomers.plot()
+#TODO: Plot the output 
+srtV.plot()
 plt.show()
 
 # Histogram plot
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 
-ax.hist(sheet3['tenure'],bins=10)
-plt.title('Tenure observation')
-plt.xlabel('tenure')
-plt.ylabel('#customer_id')
+ax.hist(srtV['DOB'],bins=5)
+plt.title('Age observation')
+plt.xlabel('DOB')
+plt.ylabel('#Numbers')
 plt.show()
 
 # Scatter plot
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
-ax.scatter(sheet3['tenure'],sheet3['customer_id'])
 
+ax.scatter(sheet3['tenure'],sheet3['customer_id'])
 plt.title('Tenure observation')
 plt.xlabel('tenure')
 plt.ylabel('#customer_id')

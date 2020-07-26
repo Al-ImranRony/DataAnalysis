@@ -1,7 +1,7 @@
 import openpyxl
 import pandas as pd
 import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", category=DeprecationWarning)   # Ignore warning
 
 wb = openpyxl.load_workbook("KPMG_dataset_sprocket_central.xlsx")
 
@@ -11,25 +11,21 @@ Sheets = wb.get_sheet_names()
 i = 0
 for sheet in Sheets:
     i += 1
-    print(str(i)+'.', sheet, end='  ')
+    print(str(i)+'.', sheet, end='  ')                           # Display sheet names
 print("")
 
 #TODO: Find the number of records, columns & date data in a sheet
 Sheet4 = wb.get_sheet_by_name("CustomerDemographic")
 print(Sheet4.title, "-", Sheet4.max_row , "records.")
+
+#TODO: Find Date-data in a sheet
 dateCount = 0                                       
 for row in Sheet4.rows:                         
     if row[5] is not None:
         dateCount += 1
 print(dateCount)
 
-Sheet2 = wb.get_sheet_by_name("Transactions")
-dateCount = 0
-for row in Sheet2.rows:
-    if row[3] is not None:
-        dateCount += 1
-print(dateCount)
-
+#TODO: Access to the certain cells
 Sheet5 = wb.get_sheet_by_name("CustomerAddress")
 print(Sheet5.title, "-", Sheet5.max_row, "records.")
 print(Sheet5["A2"].value)
@@ -52,11 +48,13 @@ if emptyCnt > 0:
 #         Sheet5.cell(row=rowNum, column=6).value = pvUpdates[cIds]
 # wb.save("updated.xlsx")
 
+#TODO: Create & remove new sheet
 wb.create_sheet(index=0, title='tempSheet')
 print(wb.get_sheet_names())
 wb.remove_sheet(wb.get_sheet_by_name('tempSheet'))
 print(wb.get_sheet_names())
 
+#TODO: Tuples of cells 
 for rowOfCellObjects in Sheet5['A2':'C4']:
     for cellObj in rowOfCellObjects:
         print(cellObj.coordinate, cellObj.value)
