@@ -47,3 +47,23 @@ print(bestCustomers)
 #TODO: Plot the output calculations data
 bestCustomers.plot()
 plt.show()
+
+# Histogram plot
+fig = plt.figure()
+ax = fig.add_subplot(1,1,1)
+
+ax.hist(sheet3['tenure'],bins=10)
+plt.title('Tenure observation')
+plt.xlabel('tenure')
+plt.ylabel('#customer_id')
+plt.show()
+
+# Scatter plot
+fig = plt.figure()
+ax = fig.add_subplot(1,1,1)
+ax.scatter(sheet3['tenure'],sheet3['customer_id'])
+
+plt.title('Tenure observation')
+plt.xlabel('tenure')
+plt.ylabel('#customer_id')
+plt.show()
